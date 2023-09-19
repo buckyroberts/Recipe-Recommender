@@ -1,6 +1,11 @@
-import openai
+import os
+
+import promptlayer
 
 from .io_utils import get_recipes_list
+
+openai = promptlayer.openai
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 
 def add_recipes_to_prompt(prompt):
