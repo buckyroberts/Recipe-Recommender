@@ -2,23 +2,20 @@ import os
 
 import promptlayer
 
-from .io_utils import get_recipes_list
-
 openai = promptlayer.openai
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 
-def add_recipes_to_prompt(prompt):
+def add_recipes_to_prompt(prompt, recipes_list):
     """Combines the given prompt with the list of recipes to form a single string"""
-    recipes_list = get_recipes_list()
     recipes_string = '\n\n'.join(recipes_list)
     results = prompt + '\n\n' + recipes_string
     return results
 
 
-def suggest_final_recipe(prompt):
+def suggest_final_recipe(prompt, recipes_list):
     """Given a prompt and a list of recipes, use GPT to suggest one of the recipes"""
-    prompt_with_recipes = add_recipes_to_prompt(prompt)
+    prompt_with_recipes = add_recipes_to_prompt(prompt, recipes_list)
     response = openai.ChatCompletion.create(
         model='gpt-3.5-turbo',
         messages=[

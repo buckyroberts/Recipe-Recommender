@@ -1,24 +1,17 @@
-from llama_index import SimpleDirectoryReader
-from llama_index import VectorStoreIndex
-from llama_index.node_parser import SimpleNodeParser
-
 from config.settings import DATA_DIR
+from embeddings.llama import build_index_from_documents, load_documents_from_directory, query_index, sort_nodes_by_score
+from recipes.suggestion import suggest_final_recipe
+
+
+def get_top_recipes(prompt):
+    """Given a prompt, retrieves and ranks recipes based on their relevance to the prompt"""
+    documents = load_documents_from_directory(input_dir=DATA_DIR)
+    index = build_index_from_documents(documents)
+    response = query_index(index, prompt)
+    return sort_nodes_by_score(response.source_nodes)
+
 
 if __name__ == '__main__':
-    # Load in Documents
-    reader = SimpleDirectoryReader(input_dir=DATA_DIR)
-    documents = reader.load_data()
-    print(f'Loaded {len(documents)} documents')
-
-    # Parse the Documents into Nodes
-    parser = SimpleNodeParser.from_defaults()
-    nodes = parser.get_nodes_from_documents(documents)
-
-    # Build an index over a set of Node objects directly
-    index = VectorStoreIndex(nodes)
-
-    # Query the index
-    query_engine = index.as_query_engine()
-    response = query_engine.query('I like rice.')
-
-    print(response.source_nodes[0].text)
+    _prompt = 'I like fish.'
+    top_recipes = get_top_recipes(_prompt)
+    suggest_final_recipe(_prompt, top_recipes)
