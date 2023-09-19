@@ -11,7 +11,11 @@ def get_top_recipes(prompt):
     return sort_nodes_by_score(response.source_nodes)
 
 
+def main():
+    prompt = 'I like fish.'
+    recipes_list = get_top_recipes(prompt)
+    suggest_final_recipe(prompt, recipes_list)
+
+
 if __name__ == '__main__':
-    _prompt = 'I like fish.'
-    top_recipes = get_top_recipes(_prompt)
-    suggest_final_recipe(_prompt, top_recipes)
+    main()

@@ -10,6 +10,7 @@ python = "^3.11"
 openai = "^0.28.0"
 llama-index = "^0.8.29.post1"
 promptlayer = "^0.2.9"
+pinecone-client = "^2.2.4"
 
 [build-system]
 requires = ["poetry-core"]
