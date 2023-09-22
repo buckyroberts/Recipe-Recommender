@@ -1,6 +1,6 @@
 import openai
 
-from config.settings import EMBEDDING_MODEL
+from settings import EMBEDDING_MODEL
 
 
 def get_vector_for_text(text):

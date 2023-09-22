@@ -2,10 +2,10 @@ import os
 
 import pinecone
 
-from config.settings import PINECONE_INDEX_NAME
-from embeddings.openai_utils import get_vector_for_text
-from recipes.io_utils import get_recipe_filepaths
-from utils.files import extract_filename_without_extension, read_txt_file
+from files import extract_filename_without_extension, read_txt_file
+from io_utils import get_recipe_filepaths
+from openai_utils import get_vector_for_text
+from settings import PINECONE_INDEX_NAME
 
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 
