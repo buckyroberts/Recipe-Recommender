@@ -60,8 +60,9 @@ Given a prompt and a list of recipes, use GPT to suggest one of the recipes
 """
 
 # Fetch our template from PromptLayer
-recipe_template = promptlayer.prompts.get('recipe_template')
-recipe_template_template = recipe_template['template']
+recipe_template = promptlayer.prompts.get("recipe_template")
+system_content = recipe_template['messages'][0]['prompt']['template']
+user_content_template = recipe_template['messages'][1]['prompt']['template']
 
 # Set our template variables
 variables = {
@@ -74,15 +75,11 @@ response, pl_request_id = openai.ChatCompletion.create(
     messages=[
         {
             'role': 'system',
-            'content': (
-                'You are a helpful assistant. '
-                'Given some user input and a list of recipes, suggest one of the recipes. '
-                'The final output should be the full recipe.'
-            )
+            'content': system_content
         },
         {
             'role': 'user',
-            'content': recipe_template_template.format(**variables)
+            'content': user_content_template.format(**variables)
         },
     ],
     temperature=0.5,
