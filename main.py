@@ -95,6 +95,11 @@ promptlayer.track.prompt(
     prompt_input_variables=variables
 )
 
+promptlayer.track.score(
+   request_id=pl_request_id,
+   score=(100 if food in response.choices[0].message.content else 0)
+)
+
 promptlayer.track.metadata(
   request_id=pl_request_id,
   metadata={
