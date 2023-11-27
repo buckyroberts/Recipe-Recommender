@@ -555,6 +555,7 @@ files = [
 
 [package.dependencies]
 aiohttp = ">=3.8.3,<4.0.0"
+async-timeout = {version = ">=4.0.0,<5.0.0", markers = "python_version < \"3.11\""}
 dataclasses-json = ">=0.5.7,<0.6.0"
 langsmith = ">=0.0.38,<0.1.0"
 numexpr = ">=2.8.4,<3.0.0"
@@ -942,7 +943,10 @@ files = [
 ]
 
 [package.dependencies]
-numpy = {version = ">=1.23.2", markers = "python_version >= \"3.11\""}
+numpy = [
+    {version = ">=1.22.4", markers = "python_version < \"3.11\""},
+    {version = ">=1.23.2", markers = "python_version >= \"3.11\""},
+]
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
 tzdata = ">=2022.1"
@@ -998,13 +1002,13 @@ grpc = ["googleapis-common-protos (>=1.53.0)", "grpc-gateway-protoc-gen-openapiv
 
 [[package]]
 name = "promptlayer"
-version = "0.2.9"
-description = "PromptLayer is a package to keep track of your GPT models training"
+version = "0.4.0"
+description = "PromptLayer is a platform for prompt engineering and tracks your LLM requests."
 optional = false
 python-versions = ">=3.8.1,<4.0"
 files = [
-    {file = "promptlayer-0.2.9-py3-none-any.whl", hash = "sha256:a51aace93ea70292a9d47b1573254f262f19d6285e69be921d7468d999c652e0"},
-    {file = "promptlayer-0.2.9.tar.gz", hash = "sha256:2f72e88de9d4be2cd27188690abbcb89e42d83e77d4a3ff42984de72e1cb8f63"},
+    {file = "promptlayer-0.4.0-py3-none-any.whl", hash = "sha256:fc6c52fce04b03a36ca40300ab2993becfbfd4d20940156210ba73a6dcc0e023"},
+    {file = "promptlayer-0.4.0.tar.gz", hash = "sha256:5637a32905da30db5391d36cf6b635fdd629d3d8a3028aaa4d15d4c516f7c34d"},
 ]
 
 [package.dependencies]
@@ -1684,5 +1688,5 @@ multidict = ">=4.0"
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.11"
-content-hash = "f9252ef413deb3820832ed1a8e8c3944b01cb1fc81c9666fc5d044bdbb006a90"
+python-versions = "^3.10"
+content-hash = "bb5b0a562c84c692aea46bfc2a179e6bbde7e6adb2fb479b1d7a214a829f2a7e"
